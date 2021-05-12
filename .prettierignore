@@ -1,0 +1,9 @@
+/android
+/build
+/node_modules
+/public
+*.min.js
+/cypress/videos
+/cypress/screenshots
+/cypress/medias
+/coverage

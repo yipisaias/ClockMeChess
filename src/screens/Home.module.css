@@ -1,0 +1,19 @@
+.Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: static;
+  height: 100vh;
+  margin: 0 auto;
+  text-align: center;
+  background-color: black;
+  border: 5px solid red;
+}
+
+.StopIcon {
+  background-color: red;
+  width: 36px;
+  height: 36px;
+  margin: auto 0px;
+  border-radius: 5px;
+}
