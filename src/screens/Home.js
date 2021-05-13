@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import { PauseOutlined } from '@ant-design/icons';
+import Cronometro from '../components/Cronometro';
 import colors from '../utils/colors';
 import styles from './Home.module.css';
 
@@ -17,14 +18,14 @@ function Home() {
     maxWidth: 300,
     height: '40%',
     margin: 'auto',
-    fontSize: '6em',
+    fontSize: '5em',
     cursor: 'auto',
   };
 
   return (
     <div className={styles.Container}>
       <Button type="primary" shape="circle" style={buttonStyle}>
-        <span style={{ display: 'inline', verticalAlign: 'super' }}>0:00</span>
+        <Cronometro />
       </Button>
 
       <div
@@ -42,7 +43,7 @@ function Home() {
       </div>
 
       <Button type="primary" shape="circle" style={buttonStyle}>
-        <span style={{ display: 'inline', verticalAlign: 'super' }}>0:00</span>
+        <Cronometro />
       </Button>
     </div>
   );
