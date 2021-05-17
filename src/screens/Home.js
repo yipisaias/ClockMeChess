@@ -14,9 +14,10 @@ function Home() {
   const p2BtnRef = useRef(null);
   const [cronoRunningBtn, setCronoRunningBtn] = useState(null);
   const [play, setPlay] = useState(true);
+  const [enableControls, setEnableControls] = useState(true);
 
   const iconStyle = {
-    color: colors.default,
+    // color: colors.default,
     fontSize: '3em',
     display: 'block',
   };
@@ -28,8 +29,17 @@ function Home() {
     maxWidth: 300,
     height: '40%',
     margin: 'auto',
-    fontSize: '5em',
+    fontSize: '4.75em',
     cursor: 'auto',
+  };
+
+  const controlsAreaStyle = {
+    backgroundColor: colors.secondary,
+    width: 140,
+    margin: 'auto',
+    padding: '5px 0px',
+    display: 'flex',
+    justifyContent: 'space-around',
   };
 
   const controlsButtonStyle = {
@@ -71,6 +81,7 @@ function Home() {
         p2BtnRef.current.disabled = false;
       }
       bindCronos(crono1Ref.current, crono2Ref.current);
+      setEnableControls(false);
     };
 
     p2BtnRef.current.onclick = () => {
@@ -81,6 +92,7 @@ function Home() {
         p1BtnRef.current.disabled = false;
       }
       bindCronos(crono2Ref.current, crono1Ref.current);
+      setEnableControls(false);
     };
   }, [p1BtnRef, p2BtnRef]);
 
@@ -105,17 +117,12 @@ function Home() {
         <Cronometro ref={crono1Ref} />
       </Button>
 
-      <div
-        style={{
-          backgroundColor: colors.secondary,
-          width: 140,
-          margin: 'auto',
-          padding: '5px 0px',
-          display: 'flex',
-          justifyContent: 'space-around',
-        }}
-      >
-        <Button style={controlsButtonStyle} onClick={pauseUnpause}>
+      <div style={controlsAreaStyle}>
+        <Button
+          disabled={enableControls}
+          style={controlsButtonStyle}
+          onClick={pauseUnpause}
+        >
           {React.createElement(play ? PauseOutlined : CaretRightFilled, {
             style: iconStyle,
           })}
