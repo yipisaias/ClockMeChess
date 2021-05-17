@@ -14,13 +14,14 @@ function Home() {
   const p2BtnRef = useRef(null);
   const [cronoRunningBtn, setCronoRunningBtn] = useState(null);
   const [play, setPlay] = useState(true);
-  const [enableControls, setEnableControls] = useState(true);
-
-  const iconStyle = {
-    // color: colors.default,
-    fontSize: '3em',
-    display: 'block',
-  };
+  const [controls, setControls] = useState({
+    disabled: true,
+    style: {
+      color: colors.disabled,
+      fontSize: '3em',
+      display: 'block',
+    },
+  });
 
   const playersButtonStyle = {
     backgroundColor: colors.primary,
@@ -81,7 +82,10 @@ function Home() {
         p2BtnRef.current.disabled = false;
       }
       bindCronos(crono1Ref.current, crono2Ref.current);
-      setEnableControls(false);
+      setControls(prev => ({
+        enabled: false,
+        style: { ...prev.style, color: colors.default },
+      }));
     };
 
     p2BtnRef.current.onclick = () => {
@@ -92,7 +96,10 @@ function Home() {
         p1BtnRef.current.disabled = false;
       }
       bindCronos(crono2Ref.current, crono1Ref.current);
-      setEnableControls(false);
+      setControls(prev => ({
+        enabled: false,
+        style: { ...prev.style, color: colors.default },
+      }));
     };
   }, [p1BtnRef, p2BtnRef]);
 
@@ -119,12 +126,12 @@ function Home() {
 
       <div style={controlsAreaStyle}>
         <Button
-          disabled={enableControls}
+          disabled={controls.disabled}
           style={controlsButtonStyle}
           onClick={pauseUnpause}
         >
           {React.createElement(play ? PauseOutlined : CaretRightFilled, {
-            style: iconStyle,
+            style: controls.style,
           })}
         </Button>
         <div className={styles.StopIcon}>&nbsp;</div>
