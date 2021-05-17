@@ -9,7 +9,7 @@ import {
   controlsAreaStyle,
   controlsButtonStyle,
   controlsIconStyle,
-} from './Home.antdStyles';
+} from './HomeAntdStyles';
 import styles from './Home.module.css';
 
 let cronoRunning = null;

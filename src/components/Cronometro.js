@@ -1,5 +1,5 @@
 import React from 'react';
-import tempoStyle from './Cronometro.antdStyle';
+import tempoStyle from './CronometroAntdStyles';
 
 class Cronometro extends React.Component {
   constructor(props) {
