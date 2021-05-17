@@ -1,8 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from 'antd';
 import { CaretRightFilled, PauseOutlined } from '@ant-design/icons';
+import StopIcon from '../components/StopIcon';
 import Cronometro from '../components/Cronometro';
 import colors from '../utils/colors';
+import {
+  playersButtonStyle,
+  controlsAreaStyle,
+  controlsButtonStyle,
+  controlsIconStyle,
+} from './Home.antdStyles';
 import styles from './Home.module.css';
 
 let cronoRunning = null;
@@ -16,39 +23,8 @@ function Home() {
   const [play, setPlay] = useState(true);
   const [controls, setControls] = useState({
     disabled: true,
-    style: {
-      color: colors.disabled,
-      fontSize: '3em',
-      display: 'block',
-    },
+    style: controlsIconStyle,
   });
-
-  const playersButtonStyle = {
-    backgroundColor: colors.primary,
-    border: '4px solid red',
-    width: '85%',
-    maxWidth: 300,
-    height: '40%',
-    margin: 'auto',
-    fontSize: '4.75em',
-    cursor: 'auto',
-  };
-
-  const controlsAreaStyle = {
-    backgroundColor: colors.secondary,
-    width: 140,
-    margin: 'auto',
-    padding: '5px 0px',
-    display: 'flex',
-    justifyContent: 'space-around',
-  };
-
-  const controlsButtonStyle = {
-    height: '90%',
-    padding: 0,
-    backgroundColor: colors.secondary,
-    borderColor: colors.secondary,
-  };
 
   const bindCronos = (crono1, crono2) => {
     crono1.pararTempo();
@@ -114,18 +90,25 @@ function Home() {
   }, [play]);
 
   return (
-    <div className={styles.Container}>
+    <div
+      className={styles.Container}
+      style={{
+        backgroundColor: colors.background,
+        borderColor: colors.default,
+      }}
+    >
       <Button
         type="primary"
         shape="circle"
         style={playersButtonStyle}
         ref={p1BtnRef}
       >
-        <Cronometro ref={crono1Ref} />
+        <Cronometro style={{ transform: 'rotate(180deg)' }} ref={crono1Ref} />
       </Button>
 
       <div style={controlsAreaStyle}>
         <Button
+          ghost
           disabled={controls.disabled}
           style={controlsButtonStyle}
           onClick={pauseUnpause}
@@ -134,7 +117,16 @@ function Home() {
             style: controls.style,
           })}
         </Button>
-        <div className={styles.StopIcon}>&nbsp;</div>
+        <Button
+          ghost
+          disabled={controls.disabled}
+          style={controlsButtonStyle}
+          // onClick={pauseUnpause}
+        >
+          <StopIcon
+            style={{ ...controls.style, fontSize: '2.5em', marginTop: 2 }}
+          />
+        </Button>
       </div>
 
       <Button

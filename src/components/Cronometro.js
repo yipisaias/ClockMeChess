@@ -1,9 +1,5 @@
 import React from 'react';
-
-const tempoStyle = {
-  display: 'inline',
-  verticalAlign: 'super',
-};
+import tempoStyle from './Cronometro.antdStyle';
 
 class Cronometro extends React.Component {
   constructor(props) {
@@ -65,8 +61,9 @@ class Cronometro extends React.Component {
 
   render() {
     const { centesimos, segundos } = this.state;
+    const { style } = this.props;
     return (
-      <div style={tempoStyle}>
+      <div style={{ ...tempoStyle, ...style }}>
         {Math.floor(segundos / 10)}:{segundos % 10}
         {''}
         {centesimos}

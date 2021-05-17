@@ -6,14 +6,5 @@
   height: 100vh;
   margin: 0 auto;
   text-align: center;
-  background-color: black;
-  border: 5px solid red;
-}
-
-.StopIcon {
-  background-color: red;
-  width: 33px;
-  height: 33px;
-  margin: auto 0px;
-  border-radius: 5px;
+  border: 5px solid;
 }
