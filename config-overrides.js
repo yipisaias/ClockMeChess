@@ -16,7 +16,7 @@ const loaderOptions = {
   javascriptEnabled: true,
   modifyVars: {
     '@primary-color': colors.primary,
-    '@default-color': colors.default,
+    '@disabled-color': colors.disabled,
   },
 };
 
