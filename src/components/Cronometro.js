@@ -65,9 +65,8 @@ class Cronometro extends React.Component {
 
   render() {
     const { centesimos, segundos } = this.state;
-    const { id } = this.props;
     return (
-      <div id={id} style={tempoStyle}>
+      <div style={tempoStyle}>
         {Math.floor(segundos / 10)}:{segundos % 10}
         {''}
         {centesimos}
