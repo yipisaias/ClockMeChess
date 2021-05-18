@@ -3,6 +3,7 @@ import { Button, Modal } from 'antd';
 import { CaretRightFilled, PauseOutlined } from '@ant-design/icons';
 import StopIcon from '../components/StopIcon';
 import Cronometro from '../components/Cronometro';
+import PlayerLabel from '../components/PlayerLabel';
 import colors from '../utils/colors';
 import {
   playersButtonStyle,
@@ -148,6 +149,10 @@ function Home() {
         style={playersButtonStyle}
         ref={p1BtnRef}
       >
+        <PlayerLabel
+          label="Jogador 1"
+          style={{ transform: 'rotate(180deg)', top: -30 }}
+        />
         <Cronometro style={{ transform: 'rotate(180deg)' }} ref={crono1Ref} />
       </Button>
 
@@ -181,6 +186,7 @@ function Home() {
         ref={p2BtnRef}
       >
         <Cronometro ref={crono2Ref} />
+        <PlayerLabel label="Jogador 2" style={{ bottom: -30 }} />
       </Button>
     </div>
   );
