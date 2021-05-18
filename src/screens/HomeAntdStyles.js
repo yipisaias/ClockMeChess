@@ -1,8 +1,8 @@
 import colors from '../utils/colors';
 
 const playersButtonStyle = {
-  backgroundColor: colors.primary,
-  border: '4px solid red',
+  backgroundColor: colors.default,
+  border: `4px solid ${colors.primary}`,
   width: '85%',
   maxWidth: 300,
   height: '40%',
@@ -32,9 +32,15 @@ const controlsIconStyle = {
   display: 'block',
 };
 
+const ModalContentStyle = {
+  display: 'flex',
+  justifyContent: 'space-between',
+};
+
 export {
   playersButtonStyle,
   controlsAreaStyle,
   controlsButtonStyle,
   controlsIconStyle,
+  ModalContentStyle,
 };

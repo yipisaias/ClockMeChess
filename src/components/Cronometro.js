@@ -21,42 +21,39 @@ class Cronometro extends React.Component {
     this.state.centesimos = 0;
     this.state.segundos = 0;
     this.state.tParcial = '';
-    this.state.parciais = [];
   }
 
   parcial() {
-    const { segundos, centesimos, parciais } = this.state;
+    const { segundos, centesimos } = this.state;
     const p = `${Math.floor(segundos / 10)}:${segundos % 10}${centesimos}\n\n`;
-    this.tParcial += p;
-    parciais.push(this.tParcial);
+    this.setState(prev => ({ tParcial: prev.tParcial + p }));
+    this.setState(prev => ({ ...prev.parciais.push(prev.tParcial) }));
   }
 
   pararTempo() {
     const { stop } = this.state;
-    this.setState({ stop: !stop });
+    this.setState(prev => ({ ...prev, stop: !stop }));
   }
 
   incrementar() {
     const { stop } = this.state;
     if (stop === false) {
-      this.setState(state => {
-        if (state.centesimos >= 9) {
+      this.setState(prev => {
+        if (prev.centesimos >= 9) {
           this.zerar();
-          this.incrementarSegundos(state);
+          this.incrementarSegundos(prev);
         }
-        return { centesimos: state.centesimos + 1 };
+        return { centesimos: prev.centesimos + 1 };
       });
     }
   }
 
   incrementarSegundos(state) {
-    this.setState(() => ({ segundos: state.segundos + 1 }));
+    this.setState(prev => ({ ...prev, segundos: state.segundos + 1 }));
   }
 
   zerar() {
-    this.setState({
-      centesimos: 0,
-    });
+    this.setState(prev => ({ ...prev, centesimos: 0 }));
   }
 
   render() {

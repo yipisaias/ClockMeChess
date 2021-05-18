@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Button } from 'antd';
+import { Button, Modal } from 'antd';
 import { CaretRightFilled, PauseOutlined } from '@ant-design/icons';
 import StopIcon from '../components/StopIcon';
 import Cronometro from '../components/Cronometro';
@@ -9,6 +9,7 @@ import {
   controlsAreaStyle,
   controlsButtonStyle,
   controlsIconStyle,
+  ModalContentStyle,
 } from './HomeAntdStyles';
 import styles from './Home.module.css';
 
@@ -25,6 +26,41 @@ function Home() {
     disabled: true,
     style: controlsIconStyle,
   });
+
+  const ModalResult = () => {
+    Modal.info({
+      title: 'Resultados',
+      content: (
+        <div style={ModalContentStyle}>
+          <div>
+            Jogador 1 <br />
+            {crono1Ref.current.state.parciais.map(item => {
+              const itemKey = crono1Ref.current.state.parciais.indexOf(item);
+              return (
+                <span key={itemKey}>
+                  {item} <br />
+                </span>
+              );
+            })}
+          </div>
+          <div>
+            Jogador 2 <br />
+            {crono2Ref.current.state.parciais.map(item => {
+              const itemKey = crono2Ref.current.state.parciais.indexOf(item);
+              return (
+                <span key={itemKey}>
+                  {item} <br />
+                </span>
+              );
+            })}
+          </div>
+        </div>
+      ),
+      onOk() {
+        window.location.reload();
+      },
+    });
+  };
 
   const bindCronos = (crono1, crono2) => {
     crono1.pararTempo();
@@ -49,6 +85,15 @@ function Home() {
     setPlay(!play);
   };
 
+  const stop = () => {
+    pauseUnpause();
+    ModalResult();
+    crono1Ref.current.zerarCronometro();
+    crono2Ref.current.zerarCronometro();
+    crono1Ref.current.state.parciais = [];
+    crono2Ref.current.state.parciais = [];
+  };
+
   useEffect(() => {
     p1BtnRef.current.onclick = () => {
       if (crono1Ref.current.state.stop) {
@@ -59,8 +104,8 @@ function Home() {
       }
       bindCronos(crono1Ref.current, crono2Ref.current);
       setControls(prev => ({
-        enabled: false,
-        style: { ...prev.style, color: colors.default },
+        disabled: false,
+        style: { ...prev.style, color: colors.primary },
       }));
     };
 
@@ -73,8 +118,8 @@ function Home() {
       }
       bindCronos(crono2Ref.current, crono1Ref.current);
       setControls(prev => ({
-        enabled: false,
-        style: { ...prev.style, color: colors.default },
+        disabled: false,
+        style: { ...prev.style, color: colors.primary },
       }));
     };
   }, [p1BtnRef, p2BtnRef]);
@@ -94,7 +139,7 @@ function Home() {
       className={styles.Container}
       style={{
         backgroundColor: colors.background,
-        borderColor: colors.default,
+        borderColor: colors.primary,
       }}
     >
       <Button
@@ -121,7 +166,7 @@ function Home() {
           ghost
           disabled={controls.disabled}
           style={controlsButtonStyle}
-          // onClick={pauseUnpause}
+          onClick={stop}
         >
           <StopIcon
             style={{ ...controls.style, fontSize: '2.5em', marginTop: 2 }}
