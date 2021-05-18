@@ -1,0 +1,8 @@
+{
+  "appId": "io.ionic.clock_me_chess",
+  "appName": "Clock-me Chess",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "cordova": {}
+}

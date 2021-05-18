@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Clock-me Chess</string>
+    <string name="title_activity_main">Clock-me Chess</string>
+    <string name="package_name">io.ionic.clock_me_chess</string>
+    <string name="custom_url_scheme">io.ionic.clock_me_chess</string>
+</resources>
